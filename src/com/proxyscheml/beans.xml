@@ -2,6 +2,7 @@
 <bean id = "WaiterTarget" class="com.proxyscheml.Waiter"/>
 <bean id = "sellerTarget" class="com.proxyscheml.Seller"/>
 <bean id = "greetingAdvice" class="com.proxyscheml.GreetingBeforeAdvice"/>
+
 <bean id = "greetingAdvisor" class ="com.proxyscheml.GreetingAdvisor"
 	p:advice-ref="greetingAdvice"/>
 <bean id = "parent" abstract = "true"
@@ -25,3 +26,20 @@
 	p:target-ref="waiterTarget"
 	p:proxyTargetClass="true"
 />
+
+<!-- 更优雅的自动代理方式 
+<bean id = "WaiterTarget" class="com.proxyscheml.Waiter"/>
+<bean id = "sellerTarget" class="com.proxyscheml.Seller"/>
+<bean id = "greetingAdvice" class="com.proxyscheml.GreetingBeforeAdvice"/>
+<bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator"
+	p:beanNames ="*er*"
+	p:interceptorNames="greetingAdvice"
+	p:optimize="true" />
+另一种
+<bean id = "regexpAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor"
+	p:patterns =".*greet.*"
+	p:advice-ref="greetingAdvice" />
+
+
+
+-->
