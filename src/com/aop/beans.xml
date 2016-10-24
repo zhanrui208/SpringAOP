@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+"http://www.springframework.org.dtd/spring-beans.dtd">
+<beans>
+    <bean id="checkuser" class="com.aop.test.CheckUser"/>
+    <bean id="target" class="com.aop.test.UserLoginImpl"/>
+    <!-- 使用Spring代理工厂配置一个代理 -->
+    <bean id="userlogin" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <!-- 指定代理接口，如果是多个接口，可以使用List元素指定 -->
+        <property name="proxyInterfaces" value="com.aop.test.UserLogin"/>
+        <!-- 指定通知 -->
+        <property name="interceptorNames" value="checkuser"/>
+        <!-- 指定目标对象 -->    <!-- 这个地方的name 我开始按照书上写的target报错，我进ProxyFactoryBean类看 没有target属性和set它的方法，有targetName属性修改了就对了-->
+        <property name="targetName" value="target"/>
+    </bean>
+</beans>
