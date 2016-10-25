@@ -8,7 +8,7 @@ public class test {
 		String configPah = "com/proxyscheml/beans.xml";
 		ApplicationContext ctx = new ClassPathXmlApplicationContext(configPah);
 		Waiter waiter = (Waiter) ctx.getBean("waiter");
-		Seller seller = (Seller) ctx.getBean("seller");x
+		Seller seller = (Seller) ctx.getBean("seller");
 		
 		waiter.greetTo("jone");
 		seller.greeTo("jerry");
